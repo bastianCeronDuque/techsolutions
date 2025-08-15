@@ -4,7 +4,7 @@
 use Tymon\JWTAuth\Facades\JWTAuth;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('/login');
 });
 Route::view('/registro', 'register'); // vista Registro
 Route::view('/login', 'login');       // vista Inicio de sesión
