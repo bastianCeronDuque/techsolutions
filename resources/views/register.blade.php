@@ -1,47 +1,45 @@
 <!doctype html>
 <html lang="es">
-
 <head>
     <meta charset="utf-8">
     <title>Registro</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    @vite(['resources/css/landing/register.css'])
+    @vite(['resources/css/landing/register.css', 'resources/js/landing/register.js'])
 </head>
-
 <body>
     <div class="card">
         <h1>📝 Registro</h1>
-        <form id="form">
-            <label>Nombre</label>
-            <input name="name" required>
-            <label>Correo</label>
-            <input name="email" type="email" required>
-            <label>Clave</label>
-            <input name="password" type="password" required minlength="6">
-            <button>Crear cuenta</button>
+        <!-- Cambiado a id="registerForm" para coincidir con el JS -->
+        <form id="registerForm">
+            @csrf
+            <div class="form-group">
+                <label>Nombre completo</label>
+                <input name="name" type="text" required placeholder="Ej: María González">
+            </div>
+            
+            <div class="form-group">
+                <label>Correo electrónico</label>
+                <input name="email" type="email" required placeholder="ejemplo@correo.com">
+            </div>
+            
+            <div class="form-group">
+                <label>Contraseña</label>
+                <input name="password" type="password" required minlength="6" placeholder="Mínimo 6 caracteres">
+            </div>
+            
+            <div class="form-group">
+                <label>Confirmar contraseña</label>
+                <input name="password_confirmation" type="password" required placeholder="Repite tu contraseña">
+            </div>
+            
+            <!-- Cambiado a id="registerBtn" -->
+            <button type="submit" class="btn-primary" id="registerBtn">
+                <span class="btn-text">Crear cuenta</span>
+                <span class="btn-loading hidden">⌛</span>
+            </button>
         </form>
-        <div class="msg" id="msg"></div>
-        <div class="small">¿Ya tienes cuenta? <a href="/login">Inicia sesión</a></div>
+        <!-- Asegúrate que este div exista -->
+        <div id="registerMsg" class="msg"></div>
     </div>
-
-    <script>
-        const form = document.getElementById('form');
-        const msg = document.getElementById('msg');
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            msg.textContent = '⏳ Enviando...';
-            const data = Object.fromEntries(new FormData(form));
-            const res = await fetch('/api/register', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-                body: JSON.stringify(data)
-            });
-            const json = await res.json();
-            msg.textContent = res.ok
-                ? '✅ ' + json.message + '\nTu token:\n' + json.token
-                : '❌ ' + (json.message || 'Error') + '\n' + JSON.stringify(json.errors || {}, null, 2);
-        });
-    </script>
 </body>
-
 </html>

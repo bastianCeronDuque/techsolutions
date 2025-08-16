@@ -140,3 +140,40 @@ button:hover {
     0%, 100% { transform: translateY(0) rotate(0deg); }
     50% { transform: translateY(-20px) rotate(5deg); }
 }
+.error-msg {
+    background: #fee2e2;
+    color: #b91c1c;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin-top: 1rem;
+    border-left: 4px solid #b91c1c;
+}
+
+.success-msg {
+    background: #dcfce7;
+    color: #166534;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin-top: 1rem;
+    border-left: 4px solid #166534;
+}
+
+.loading-msg {
+    color: #4f46e5;
+    padding: 1rem;
+    text-align: center;
+}
+
+.input-error {
+    border-color: #b91c1c !important;
+    background: #fff5f5 !important;
+}
+
+.error-msg ul {
+    margin: 0.5rem 0 0 1rem;
+    padding-left: 1rem;
+}
+
+.error-msg li {
+    margin-bottom: 0.3rem;
+}

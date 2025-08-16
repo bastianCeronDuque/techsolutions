@@ -6,8 +6,10 @@ export default defineConfig({
     plugins: [
         laravel({
             input: [
-                'resources/css/landing/register.css',
                 'resources/css/landing/login.css',
+                'resources/js/landing/login.js',
+                'resources/css/landing/register.css',
+                'resources/js/landing/register.js'
             ],
             refresh: true,
         }),
