@@ -5,66 +5,7 @@
     <meta charset="utf-8">
     <title>Registro</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
-        body {
-            font-family: system-ui, Arial;
-            margin: 0;
-            display: grid;
-            place-items: center;
-            min-height: 100vh;
-            background: #f5f7fb
-        }
-
-        .card {
-            background: #fff;
-            padding: 24px;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, .08);
-            width: min(420px, 92vw)
-        }
-
-        h1 {
-            margin: 0 0 16px
-        }
-
-        label {
-            display: block;
-            margin: 12px 0 4px
-        }
-
-        input {
-            width: 90%;
-            padding: 12px;
-            border: 1px solid #dcdfe4;
-            border-radius: 10px
-        }
-
-        button {
-            margin-top: 16px;
-            padding: 12px 16px;
-            border: 0;
-            border-radius: 10px;
-            background: #4f46e5;
-            color: #fff;
-            font-weight: 600;
-            cursor: pointer
-        }
-
-        .msg {
-            margin-top: 12px;
-            font-size: 14px;
-            white-space: pre-wrap
-        }
-
-        .small {
-            margin-top: 10px;
-            font-size: 13px
-        }
-
-        a {
-            color: #4f46e5
-        }
-    </style>
+    @vite(['resources/css/landing/register.css'])
 </head>
 
 <body>
