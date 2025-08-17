@@ -92,5 +92,6 @@ routes/
 
 **Bastián Cerón Duque**  
 GitHub: [@bastianCeronDuque](https://github.com/bastianCeronDuque)
+
 **Felipe Morales Roa**  
 GitHub: [@felipeDev303](https://github.com/felipeDev303)
