@@ -40,6 +40,7 @@
         </form>
         <!-- Asegúrate que este div exista -->
         <div id="registerMsg" class="msg"></div>
+        <div class="small">¿Ya tienes una cuenta? <a class="ancla-footer" href="/login">Inicia sesión</a></div>
     </div>
 </body>
 </html>

@@ -205,3 +205,12 @@ button:hover {
     from { opacity: 0; transform: translateY(-10px); }
     to { opacity: 1; transform: translateY(0); }
 }
+.ancla-footer{
+    text-decoration: none;
+    color: var(--color-secondary);
+    font-weight: 500;
+    transition: color 0.5s ease;
+}
+.ancla-footer:hover {
+    color: var(--color-primary);
+}

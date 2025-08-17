@@ -22,7 +22,7 @@
       <button type="submit" class="btn-primary">Entrar</button>
     </form>
     <div id="msg" class="msg"></div>
-    <div class="small">¿No tienes cuenta? <a href="/registro">Regístrate</a></div>
+    <div class="small">¿Aún no tienes una cuenta? <a class="ancla-footer" href="/registro">Regístrate gratis</a></div>
   </div>
 </body>
 </html>
