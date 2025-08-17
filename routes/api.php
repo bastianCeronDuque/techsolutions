@@ -2,28 +2,23 @@
 use Illuminate\Http\Request;
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\JwtMiddleware;
 
 Route::post('/register', [AuthController::class, 'register']); 
 Route::post('/login',    [AuthController::class, 'login']);
 Route::get('/prueba', function () {
     return response()->json(['mensaje' => 'API funcionando ✅']);
 });
-Route::middleware('auth:api')->get('/me', [AuthController::class, 'me']);
-// Rutas protegidas con JWT
-Route::middleware('jwt')->group(function () {
+
+// Todas las rutas protegidas bajo un solo middleware JWT
+Route::middleware([JwtMiddleware::class])->group(function () {
     Route::get('/me', [AuthController::class, 'me']);
+    Route::post('/logout', [AuthController::class, 'logout']);
+    Route::get('/usuario-autenticado', function (Request $request) {
+        return response()->json([
+            'ok' => true,
+            'user' => $request->user()
+        ]);
+    });
 });
-// routes/api.php
-Route::middleware('auth:sanctum')->get('/me', function (Request $request) {
-    return response()->json([
-        'user' => $request->user()
-    ]);
-});
-Route::middleware('auth:api')->get('/usuario-autenticado', function (Request $request) {
-    return response()->json([
-        'ok' => true,
-        'user' => $request->user()
-    ]);
-});
-Route::middleware('auth:api')->post('/logout', [AuthController::class, 'logout']);
 

@@ -45,7 +45,7 @@ class AuthController extends Controller
                 'email' => $user->email,
             ],
             'token' => $token
-        ], 201);
+        ], 201)->cookie('jwt_token', $token, 60, '/', null, false, true); // HttpOnly (Secure solo en producción)
     }
 
     // POST /api/login
@@ -76,8 +76,8 @@ class AuthController extends Controller
             'ok' => true,
             'token' => $token,
             'token_type' => 'bearer',
-            'expires_in' => auth('api')->factory()->getTTL() * 60
-        ]);
+            'expires_in' => JWTAuth::factory()->getTTL() * 60
+        ])->cookie('jwt_token', $token, 60, '/', null, false, true); // HttpOnly (Secure solo en producción)
     }
 
     // GET /api/me
@@ -92,7 +92,8 @@ class AuthController extends Controller
     {
         JWTAuth::invalidate(JWTAuth::getToken());
 
-        return response()->json(['message' => 'Sesión cerrada correctamente.']);
+        return response()->json(['message' => 'Sesión cerrada correctamente.'])
+            ->cookie('jwt_token', '', -1); // Eliminar cookie
     }
 }
 

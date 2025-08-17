@@ -10,12 +10,12 @@ class DashboardController extends Controller
     public function __invoke(Request $request)
     {
         // Verifica explícitamente la autenticación
-        if (!auth()->check()) {
+        if (!Auth::check()) {
             return redirect()->route('login');
         }
 
         return view('dashboard', [
-            'user' => auth()->user()
+            'user' => Auth::user()
         ]);
     }
 }
