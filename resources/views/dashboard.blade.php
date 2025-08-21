@@ -38,6 +38,9 @@
                 <div class="user-info">
                     <span>👋 Hola, {{ Auth::user()->name }}</span>
                 </div>
+                <div class="uf-value-container">
+                    <x-uf-value :value="$ufValue" />
+                </div>
             </header>
 
             <div class="content">

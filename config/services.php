@@ -34,5 +34,9 @@ return [
             'channel' => env('SLACK_BOT_USER_DEFAULT_CHANNEL'),
         ],
     ],
+    'bcentral' => [
+        'user' => env('BCENTRAL_API_USER'),
+        'pass' => env('BCENTRAL_API_PASS'),
+    ],
 
 ];
