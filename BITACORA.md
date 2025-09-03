@@ -31,8 +31,6 @@
 
 ## 📋 Plan de Implementación Restante
 
-### Próximos Pasos Recomendados
-
 1. Completar Fase 1: CRUD Web de Proyectos
 2. Actualizar el modelo Project
 3. Migración para relación con usuarios
