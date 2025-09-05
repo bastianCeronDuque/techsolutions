@@ -18,7 +18,7 @@
 
 ### ⚠️ PENDIENTE - Fase 1: CRUD de Proyectos
 
-❌ ProjectController - No existe controlador para proyectos
+✅ ProjectController - No existe controlador para proyectos
 ❌ Rutas web de proyectos - Solo tienes rutas de auth
 ❌ Vistas de proyectos - No hay vistas para CRUD
 ❌ Gestión de proyectos en el dashboard

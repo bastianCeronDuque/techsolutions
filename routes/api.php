@@ -1,6 +1,7 @@
 <?php
 use Illuminate\Http\Request;
 use App\Http\Controllers\AuthController;
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\JwtMiddleware;
 
