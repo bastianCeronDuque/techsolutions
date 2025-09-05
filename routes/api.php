@@ -1,7 +1,7 @@
 <?php
 use Illuminate\Http\Request;
 use App\Http\Controllers\AuthController;
-
+use App\Http\Controllers\ProjectController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\JwtMiddleware;
 
@@ -21,5 +21,8 @@ Route::middleware([JwtMiddleware::class])->group(function () {
             'user' => $request->user()
         ]);
     });
+
+    // Rutas de proyectos
+    Route::apiResource('projects', ProjectController::class);
 });
 
