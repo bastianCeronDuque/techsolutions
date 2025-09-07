@@ -35,8 +35,8 @@ class ProjectController extends Controller
                           ->orderBy('created_at', 'desc')
                           ->get();
 
-        // API: Respuesta JSON
-        if ($request->expectsJson()) {
+        // API: Respuesta JSON (para rutas /api/ siempre JSON)
+        if ($request->expectsJson() || $request->is('api/*')) {
             return response()->json([
                 'success' => true,
                 'data' => $projects,
@@ -84,8 +84,8 @@ class ProjectController extends Controller
         // Crear el proyecto
         $project = Project::create($validatedData);
 
-        // API: Respuesta JSON
-        if ($request->expectsJson()) {
+        // API: Respuesta JSON (para rutas /api/ siempre JSON)
+        if ($request->expectsJson() || $request->is('api/*')) {
             return response()->json([
                 'success' => true,
                 'data' => $project->load('creator:id,name,email'),
@@ -111,8 +111,8 @@ class ProjectController extends Controller
         // Verificar autorización: solo el creador puede ver su proyecto
         $this->authorizeProjectAccess($project, $request);
 
-        // API: Respuesta JSON
-        if ($request->expectsJson()) {
+        // API: Respuesta JSON (para rutas /api/ siempre JSON)
+        if ($request->expectsJson() || $request->is('api/*')) {
             return response()->json([
                 'success' => true,
                 'data' => $project->load('creator:id,name,email'),
@@ -164,8 +164,8 @@ class ProjectController extends Controller
         // Actualizar el proyecto
         $project->update($validatedData);
 
-        // API: Respuesta JSON
-        if ($request->expectsJson()) {
+        // API: Respuesta JSON (para rutas /api/ siempre JSON)
+        if ($request->expectsJson() || $request->is('api/*')) {
             return response()->json([
                 'success' => true,
                 'data' => $project->fresh()->load('creator:id,name,email'),
@@ -197,8 +197,8 @@ class ProjectController extends Controller
         // Eliminar el proyecto
         $project->delete();
 
-        // API: Respuesta JSON
-        if ($request->expectsJson()) {
+        // API: Respuesta JSON (para rutas /api/ siempre JSON)
+        if ($request->expectsJson() || $request->is('api/*')) {
             return response()->json([
                 'success' => true,
                 'message' => "Proyecto '{$projectName}' eliminado exitosamente"
@@ -220,7 +220,7 @@ class ProjectController extends Controller
     private function authorizeProjectAccess(Project $project, Request $request)
     {
         if ($project->created_by !== Auth::id()) {
-            if ($request->expectsJson()) {
+            if ($request->expectsJson() || $request->is('api/*')) {
                 abort(response()->json([
                     'success' => false,
                     'message' => 'No tienes permisos para acceder a este proyecto'
