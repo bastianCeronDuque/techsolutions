@@ -102,5 +102,21 @@ class AuthController extends Controller
         return response()->json(['message' => 'Sesión cerrada correctamente.'])
             ->cookie('jwt_token', '', -1); // Eliminar cookie
     }
+
+    /**
+     * Mostrar formulario de login
+     */
+    public function showLogin()
+    {
+        return view('login');
+    }
+
+    /**
+     * Mostrar formulario de registro
+     */
+    public function showRegister()
+    {
+        return view('register');
+    }
 }
 
