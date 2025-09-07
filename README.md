@@ -163,7 +163,7 @@ php artisan serve
 
 ## Uso
 
-1. **Registro**: Ve a `/registro` y crea una cuenta
+1. **Register**: Ve a `/register` y crea una cuenta
 2. **Login**: Accede en `/login` con tus credenciales
 3. **Dashboard**: Accede automáticamente tras login exitoso
 
