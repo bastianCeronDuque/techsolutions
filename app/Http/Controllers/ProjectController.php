@@ -50,6 +50,17 @@ class ProjectController extends Controller
     }
 
     /**
+     * 1.1. Mostrar formulario para crear nuevo proyecto
+     * GET /projects/create (web)
+     * 
+     * @return \Illuminate\View\View
+     */
+    public function create()
+    {
+        return view('projects.create');
+    }
+
+    /**
      * 2. Controlador para crear un proyecto
      * POST /projects (web) | POST /api/projects (API)
      * 
@@ -111,6 +122,21 @@ class ProjectController extends Controller
 
         // Web: Respuesta HTML
         return view('projects.show', compact('project'));
+    }
+
+    /**
+     * 3.1. Mostrar formulario para editar proyecto
+     * GET /projects/{id}/edit (web)
+     * 
+     * @param Project $project
+     * @return \Illuminate\View\View
+     */
+    public function edit(Project $project)
+    {
+        // Verificar autorización: solo el creador puede editar su proyecto
+        $this->authorizeProjectAccess($project, request());
+
+        return view('projects.edit', compact('project'));
     }
 
     /**

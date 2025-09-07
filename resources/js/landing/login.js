@@ -20,10 +20,10 @@ form.addEventListener("submit", async (e) => {
 
         if (!res.ok) throw data;
 
-        // Opcional: aún podemos guardar el token en localStorage como respaldo
-        // pero el más importante es la cookie HttpOnly que se establece automáticamente
+        // ✅ Guardar token en múltiples lugares para máxima compatibilidad
         if (data.token) {
             localStorage.setItem("token", data.token);
+            sessionStorage.setItem("jwt_token", data.token);
         }
 
         msg.innerHTML = "✅ <strong>¡Bienvenido!</strong><br>Redirigiendo...";

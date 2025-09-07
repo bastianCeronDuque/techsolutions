@@ -337,6 +337,34 @@
     
     <!-- Dashboard Scripts -->
     <script>
+        // ✅ Verificar y enviar token JWT en headers para navegación web
+        (function() {
+            const token = sessionStorage.getItem('jwt_token') || localStorage.getItem('token');
+            
+            if (token) {
+                // Configurar headers por defecto para fetch
+                const originalFetch = window.fetch;
+                window.fetch = function(...args) {
+                    if (typeof args[1] === 'object') {
+                        args[1].headers = args[1].headers || {};
+                        args[1].headers['X-Auth-Token'] = token;
+                    } else {
+                        args[1] = { headers: { 'X-Auth-Token': token } };
+                    }
+                    return originalFetch.apply(this, args);
+                };
+                
+                // También enviar en navegación regular (meta tag para Laravel)
+                const metaToken = document.querySelector('meta[name="csrf-token"]');
+                if (metaToken) {
+                    document.head.appendChild(Object.assign(document.createElement('meta'), {
+                        name: 'auth-token',
+                        content: token
+                    }));
+                }
+            }
+        })();
+
         // Auto-refresh cada 5 minutos para actualizar UF
         setTimeout(() => {
             location.reload();

@@ -72,12 +72,19 @@ class AuthController extends Controller
             ], 401);
         }
 
+        // ✅ CLAVE: Autenticar también en Laravel Auth estándar
+        $user = auth('api')->user();
+        \Illuminate\Support\Facades\Auth::login($user, true);
+
+        // ✅ Guardar token también en sesión para navegación web
+        session(['jwt_token' => $token]);
+
         return response()->json([
             'ok' => true,
             'token' => $token,
             'token_type' => 'bearer',
             'expires_in' => JWTAuth::factory()->getTTL() * 60
-        ])->cookie('jwt_token', $token, 60, '/', null, false, true); // HttpOnly (Secure solo en producción)
+        ])->cookie('jwt_token', $token, 60, '/', null, false, true); // HttpOnly
     }
 
     // GET /api/me

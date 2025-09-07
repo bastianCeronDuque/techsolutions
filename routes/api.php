@@ -3,6 +3,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProjectController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Middleware\JwtMiddleware;
 
 Route::post('/register', [AuthController::class, 'register']); 
@@ -18,7 +19,7 @@ Route::middleware([JwtMiddleware::class])->group(function () {
     Route::get('/usuario-autenticado', function (Request $request) {
         return response()->json([
             'ok' => true,
-            'user' => $request->user()
+            'user' => Auth::user()
         ]);
     });
 

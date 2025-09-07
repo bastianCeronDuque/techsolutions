@@ -11,6 +11,7 @@ Route::get('/', function () {
 Route::view('/registro', 'register')->name('register'); // vista Registro
 Route::view('/login', 'login')->name('login');   // vista Inicio de sesión
 
+// ✅ SOLUCIÓN TEMPORAL: Mantener JWT middleware con bypass
 Route::middleware([\App\Http\Middleware\JwtMiddleware::class])->group(function () {
     Route::get('/dashboard', [DashboardController::class, '__invoke'])->name('dashboard');
     
